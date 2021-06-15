@@ -48,6 +48,7 @@ pipeline {
                 echo "*****************************"
                 echo "*****************************"
                 echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+                sh "mvn clean test"
                 sleep(5)
             }
         }
