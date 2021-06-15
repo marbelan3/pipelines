@@ -1,0 +1,121 @@
+pipeline {
+    agent any
+    options {
+        timeout(time: 2, unit: 'MINUTES')
+        timestamps()
+        buildDiscarder(logRotator(numToKeepStr: '5'))
+    }
+    stages {
+        stage('Setup parameters') {
+            steps {
+                script {
+                    properties([
+                            parameters([
+                                    choice(
+                                            choices: ['ONE', 'TWO'],
+                                            name: 'CHOICE_PARAMETER_01'
+                                    ),
+                                    booleanParam(
+                                            defaultValue: true,
+                                            description: '',
+                                            name: 'IS_BOOLEAN_TRUE'
+                                    ),
+                                    text(
+                                            defaultValue: '''
+                                this is a multi-line 
+                                string parameter example
+                                ''',
+                                            name: 'MULTI-LINE-STRING'
+                                    ),
+                                    string(
+                                            defaultValue: 'scriptcrunch',
+                                            name: 'STRING-PARAMETER',
+                                            trim: true
+                                    )
+                            ])
+                    ])
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                echo "*****************************"
+                echo "*****************************"
+                echo "*****************************"
+                echo "*****************************"
+                sh 'printenv'
+                echo "*****************************"
+                echo "*****************************"
+                echo "*****************************"
+                echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+                sleep(5)
+            }
+        }
+        stage('Deploy') {
+            steps {
+                sh 'echo "This is my Deploy step"'
+                sleep(5)
+            }
+        }
+        stage('Parallel') {
+            parallel {
+                stage('Build') {
+                    steps {
+                        sh 'echo "Step 1"'
+                        sh 'echo "Step 2"'
+                        sh 'echo "Step 3"'
+                        sleep(5)
+                    }
+                }
+                stage('Test1') {
+                    steps {
+                        sh 'echo "This is my Test step"'
+                        sleep(5)
+                    }
+                }
+                stage('Deploy1') {
+                    steps {
+                        sh 'echo "This is my Deploy step"'
+                        sleep(5)
+                    }
+                }
+            }
+        }
+    }
+    post {
+        always {
+            echo 'always runs regardless of the completion status of the Pipeline run'
+        }
+        success {
+            echo 'step will run only if the build is successful'
+            emailext(
+                    subject: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                    body: """<p>SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+                    "J O B    S U C C E S S ! ! !"
+                    "J O B    S U C C E S S ! ! !"
+                    "J O B    S U C C E S S ! ! !"
+            <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
+                    to: "marbelan3@gmail.com",
+                    from: "marbelan3@gmail.com"
+            )
+
+        }
+        failure {
+            echo 'only when the Pipeline is currently in a "failed" state run, usually expressed in the Web UI with the red indicator.'
+            emailext(
+                    subject: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                    body: """<p>FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+            <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
+                    to: "${emailRecipient}",
+                    from: "buildNotifications@emailaddress.com"
+            )
+
+        }
+        unstable {
+            echo 'current Pipeline has "unstable" state, usually by a failed test, code violations and other causes, in order to run. Usually represented in a web UI with a yellow indication.'
+        }
+        changed {
+            echo 'can only be run if the current Pipeline is running at a different state than the previously completed Pipeline'
+        }
+    }
+}
