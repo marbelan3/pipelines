@@ -10,18 +10,9 @@ pipeline {
             steps {
                 script {
                     properties([
-                            parameters([
-                                    choice(
-                                            choices: ['ONE', 'TWO'],
-                                            name: 'CHOICE_PARAMETER_01'
-                                    ),
-                                    booleanParam(
-                                            defaultValue: true,
-                                            description: '',
-                                            name: 'IS_BOOLEAN_TRUE'
-                                    ),
-                                    text(
-                                            defaultValue: '''
+                            parameters([choice(choices: ['ONE', 'TWO', 'THREE'], name: 'CHOICE_PARAMETER_01'),
+                                    booleanParam(defaultValue: true, description: '', name: 'isBoolean'),
+                                    text(defaultValue: '''
                                 this is a multi-line 
                                 string parameter example
                                 ''',
@@ -43,6 +34,7 @@ pipeline {
                 echo "*****************************"
                 echo "*****************************"
                 echo "*****************************"
+                echo "${env.isBoolean}"
 //                sh 'printenv'
                 echo "*****************************"
                 echo "*****************************"
