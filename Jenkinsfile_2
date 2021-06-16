@@ -35,6 +35,7 @@ pipeline {
                         "*****************************\n" +
                         "*****************************"
                 echo "env boolean param is : ${env.isBoolean}"
+                echo "env string param is : ${env.CHOICE_PARAMETER_01}"
 //                sh 'printenv'
                 echo "*****************************\n" +
                         "*****************************\n" +
