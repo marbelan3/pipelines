@@ -21,11 +21,13 @@ public class TestTests {
 
     @Test
     public void test() {
+        logger.info("\n*****************************************\n" + choice_parameter_01);
         Assert.assertEquals(choice_parameter_01, "ONE");
     }
 
     @Test
     public void test2() {
+        logger.info("\n*****************************************\n" + isBooleanTrue);
         if (isBooleanTrue) {
             throw new RuntimeException("\n*****************************************\n" +
                     "*****************************************\n" +
