@@ -113,4 +113,21 @@ pipeline {
             echo 'can only be run if the current Pipeline is running at a different state than the previously completed Pipeline'
         }
     }
+
+    // Sets the orphaned branch strategy.
+    orphanedItemStrategy {
+
+        // Trims dead items by the number of days or the number of items.
+        discardOldItems {
+            // Sets the number of days to keep old items.
+            //daysToKeep(int daysToKeep)
+            // Sets the number of old items to keep.
+            numToKeep(1)
+        }
+        defaultOrphanedItemStrategy {
+            pruneDeadBranches(true)
+            daysToKeepStr('30')
+            numToKeepStr('10')
+        }
+    }
 }
