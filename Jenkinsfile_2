@@ -11,18 +11,18 @@ pipeline {
                 script {
                     properties([
                             parameters([choice(choices: ['ONE', 'TWO', 'THREE'], name: 'CHOICE_PARAMETER_01'),
-                                    booleanParam(defaultValue: true, description: '', name: 'isBoolean'),
-                                    text(defaultValue: '''
+                                        booleanParam(defaultValue: true, description: '', name: 'isBoolean'),
+                                        text(defaultValue: '''
                                 this is a multi-line 
                                 string parameter example
                                 ''',
-                                            name: 'MULTI-LINE-STRING'
-                                    ),
-                                    string(
-                                            defaultValue: 'scriptcrunch',
-                                            name: 'STRING-PARAMETER',
-                                            trim: true
-                                    )
+                                                name: 'MULTI-LINE-STRING'
+                                        ),
+                                        string(
+                                                defaultValue: 'scriptcrunch',
+                                                name: 'STRING-PARAMETER',
+                                                trim: true
+                                        )
                             ])
                     ])
                 }
@@ -30,15 +30,16 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo "*****************************"
-                echo "*****************************"
-                echo "*****************************"
-                echo "*****************************"
-                echo "${env.isBoolean}"
+                echo "*****************************\n" +
+                        "*****************************\n" +
+                        "*****************************\n" +
+                        "*****************************"
+                echo "env boolean param is : ${env.isBoolean}"
 //                sh 'printenv'
-                echo "*****************************"
-                echo "*****************************"
-                echo "*****************************"
+                echo "*****************************\n" +
+                        "*****************************\n" +
+                        "*****************************\n" +
+                        "*****************************"
                 echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
                 sh """./mvnw clean test"""
                 sleep(5)
