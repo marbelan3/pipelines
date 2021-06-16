@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 public class TestTests {
     Logger logger = Logger.getLogger(getClass().getName());
     private static String choice_parameter_01;
-    private static boolean isBooleanTrue;
+    private static boolean isBoolean;
 
     @BeforeClass
     public void beforeClass() {
@@ -17,7 +17,7 @@ public class TestTests {
         Logger.getLogger("hudson.plugins.git.GitStatus").setLevel(Level.SEVERE);
         Logger.getLogger("hudson.security.csrf.CrumbFilter").setLevel(Level.SEVERE);
         choice_parameter_01 = System.getenv("CHOICE_PARAMETER_01");
-        isBooleanTrue = Boolean.getBoolean("IS_BOOLEAN_TRUE");
+        isBoolean = Boolean.getBoolean("isBoolean");
         logger.info("choice_parameter_01" + choice_parameter_01);
     }
 
@@ -31,9 +31,9 @@ public class TestTests {
     @Test
     public void test2() {
 
-        logger.info("\n*****************************************\n" + isBooleanTrue);
-        logger.severe("\n*****************************************\n" + isBooleanTrue);
-        if (isBooleanTrue) {
+        logger.info("\n*****************************************\n" + isBoolean);
+        logger.severe("\n*****************************************\n" + isBoolean);
+        if (isBoolean) {
             System.out.println("123123123123123");
             throw new RuntimeException("\n*****************************************\n" +
                     "*****************************************\n" +
@@ -42,6 +42,6 @@ public class TestTests {
                     "*****************************************\n" +
                     "*****************************************");
         }
-        Assert.assertTrue(isBooleanTrue);
+//        Assert.assertTrue(isBoolean);
     }
 }
