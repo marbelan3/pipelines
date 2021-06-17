@@ -1,5 +1,7 @@
 pipeline {
     agent any
+    tools { maven 'Maven' }
+
     options {
         timeout(time: 2, unit: 'MINUTES')
         timestamps()
@@ -86,6 +88,15 @@ pipeline {
     post {
         always {
             echo 'always runs regardless of the completion status of the Pipeline run'
+            script {
+                allure([
+                        includeProperties: false,
+                        jdk              : '',
+                        properties       : [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results          : [[path: 'target/allure-results']]
+                ])
+            }
         }
         success {
             echo 'step will run only if the build is successful'
