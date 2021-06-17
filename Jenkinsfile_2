@@ -4,6 +4,7 @@ pipeline {
 
     options {
         timeout(time: 2, unit: 'MINUTES')
+        ansiColor('xterm')
         timestamps()
         buildDiscarder(
                 logRotator(
@@ -114,18 +115,31 @@ pipeline {
                     from: "marbelan3@gmail.com"
             )
         }
-//        always {
-//            echo 'always runs regardless of the completion status of the Pipeline run'
-//            script {
-//                allure([
-//                        includeProperties: false,
-//                        jdk              : '',
-//                        properties       : [],
-//                        reportBuildPolicy: 'ALWAYS',
-//                        results          : [[path: 'target/allure-results']]
-//                ])
-//            }
-//        }
+        always {
+            echo 'always runs regardless of the completion status of the Pipeline run'
+            script {
+                allure([
+                        includeProperties: false,
+                        jdk              : '',
+                        properties       : [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results          : [[path: 'target/allure-results']]
+                ])
+            }
+
+            emailext(
+                    subject: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                    body: """<p>SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+                    "J O B    U N N N N N * * * * * * S U C C E S S ! ! !"
+                    "J O B    U N N N N N * * * * * * S U C C E S S ! ! !"
+                    "J O B    U N N N N N * * * * * * S U C C E S S ! ! !"
+                    "J O B    U N N N N N * * * * * * S U C C E S S ! ! !"
+            <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
+                    to: "marbelan3@yahoo.com",
+                    from: "marbelan3@gmail.com"
+            )
+
+        }
         unstable {
             echo 'current Pipeline has "unstable" state, usually by a failed test, code violations and other causes, in order to run. Usually represented in a web UI with a yellow indication.'
         }
