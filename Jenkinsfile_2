@@ -110,7 +110,7 @@ pipeline {
                     "J O B    U N N N N N * * * * * * S U C C E S S ! ! !"
                     "J O B    U N N N N N * * * * * * S U C C E S S ! ! !"
                     "J O B    U N N N N N * * * * * * S U C C E S S ! ! !"
-            <h3>Check Allure Report at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}allure]</a>&QUOT; </h3>
+            <h3>Check Allure Report at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME}/allure [${env.BUILD_NUMBER}]</a>&QUOT; </h3>
             <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
                     to: "marbelan3@gmail.com",
                     from: "marbelan3@gmail.com"
