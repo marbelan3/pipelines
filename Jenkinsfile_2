@@ -1,5 +1,3 @@
-import io.qameta.allure.Allure
-
 pipeline {
     agent any
 //    tools { maven 'Maven' }
