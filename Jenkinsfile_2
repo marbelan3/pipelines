@@ -87,16 +87,20 @@ pipeline {
     }
     post {
         always {
-            stage ('Allure report'){
-                echo 'always runs regardless of the completion status of the Pipeline run'
-                script {
-                    allure([
-                            includeProperties: false,
-                            jdk              : '',
-                            properties       : [],
-                            reportBuildPolicy: 'ALWAYS',
-                            results          : [[path: 'target/allure-results']]
-                    ])
+            stages {
+                stage('Allure report') {
+                    echo 'always runs regardless of the completion status of the Pipeline run'
+                    steps {
+                        script {
+                            allure([
+                                    includeProperties: false,
+                                    jdk              : '',
+                                    properties       : [],
+                                    reportBuildPolicy: 'ALWAYS',
+                                    results          : [[path: 'target/allure-results']]
+                            ])
+                        }
+                    }
                 }
             }
         }
