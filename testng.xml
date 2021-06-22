@@ -1,0 +1,15 @@
+<suite name="Parameter test Suite" verbose="1">
+    <!-- This parameter will be passed to every test in this suite -->
+    <parameter name="milliseconds" value="15" />
+    <test name="test2">
+        <classes>
+            <class name="TestTests">
+                <methods>
+<!--                    <include name="milliseconds" />-->
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
+
+<!--        https://howtodoinjava.com/testng/testng-parameters/-->

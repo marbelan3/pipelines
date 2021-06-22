@@ -1,7 +1,6 @@
 import com.codeborne.selenide.Selenide;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,9 +28,10 @@ public class TestTests {
         Assert.assertEquals(choice_parameter_01, "ONE");
     }
 
+    //    @Parameters({"milliseconds"})
     @Test
     public void test2() {
-
+        System.out.println(milliseconds);
         logger.info("\n*****************************************\n" + isBoolean);
         if (isBoolean) {
             logger.info(
@@ -43,13 +43,6 @@ public class TestTests {
                             "******************** S U C C E S S  *********************\n" +
                             "******************** S U C C E S S  *********************\n");
         }
-        Assert.assertTrue(isBoolean, "The boolean parameter is 'F A L S E'");
-    }
-
-
-    @Test
-    public void browserTest(int millisec) {
-        Selenide.open("https://google.com");
         if (enabled) {
             logger.info(
                     "\n******************** enabled - true  *********************\n" +
@@ -61,8 +54,27 @@ public class TestTests {
                             "\n******************** enabled - true  *********************\n" +
                             "\n******************** enabled - true  *********************\n");
         }
-
-        Selenide.sleep(millisec);
-        logger.info("Browser has been wait a " + millisec + " milliseconds");
+        Assert.assertTrue(isBoolean, "The boolean parameter is 'F A L S E'");
     }
+
+
+//    @Test
+//    @Parameters({"milliseconds"})
+//    public void browserTest(int millisec) {
+//        Selenide.open("https://google.com");
+//        if (enabled) {
+//            logger.info(
+//                    "\n******************** enabled - true  *********************\n" +
+//                            "\n******************** enabled - true  *********************\n" +
+//                            "\n******************** enabled - true  *********************\n" +
+//                            "\n******************** enabled - true  *********************\n" +
+//                            "\n******************** enabled - true  *********************\n" +
+//                            "\n******************** enabled - true  *********************\n" +
+//                            "\n******************** enabled - true  *********************\n" +
+//                            "\n******************** enabled - true  *********************\n");
+//        }
+//
+//        Selenide.sleep(millisec);
+//        logger.info("Browser has been wait a " + millisec + " milliseconds");
+//    }
 }
