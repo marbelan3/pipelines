@@ -25,7 +25,7 @@ pipeline {
                 script {
                     properties([
                             parameters([choice(choices: ['ONE', 'TWO', 'THREE'], name: 'CHOICE_PARAMETER_01'),
-                                        booleanParam(defaultValue: true, description: '', name: 'enabled'),
+                                        booleanParam(defaultValue: true, description: '', name: 'IS_ENABLED'),
                                         text(defaultValue: '''
                                 this is a multi-line 
                                 string parameter example
@@ -34,7 +34,7 @@ pipeline {
                                         ),
                                         string(
                                                 defaultValue: 'scriptcrunch',
-                                                name: 'milliseconds',
+                                                name: 'STRING-PARAMETER',
                                                 trim: true
                                         )
                             ])
@@ -47,11 +47,17 @@ pipeline {
                 echo "*****************************\n" +
                         "*****************************\n" +
                         "*****************************\n" +
+                        "*****************************\n" +
+                        "*****************************\n" +
+                        "*****************************\n" +
                         "*****************************"
-                echo "env boolean param is : ${env.isBoolean}"
+                echo "env boolean param is : ${env.IS_ENABLED}"
                 echo "env string param is : ${env.CHOICE_PARAMETER_01}"
 //                sh 'printenv'
                 echo "*****************************\n" +
+                        "*****************************\n" +
+                        "*****************************\n" +
+                        "*****************************\n" +
                         "*****************************\n" +
                         "*****************************\n" +
                         "*****************************"

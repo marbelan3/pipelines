@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 
 
 public class TestTests {
-    public static boolean enabled = System.getProperty("enabled") != null && System.getProperty("enabled").equalsIgnoreCase("true");
+    public static boolean enabled = Boolean.parseBoolean(System.getProperty("IS_ENABLED"));
     public static String milliseconds;
 
     Logger logger = Logger.getLogger(getClass().getName());
