@@ -1,8 +1,5 @@
-import com.codeborne.selenide.Selenide;
 import org.testng.Assert;
 import org.testng.annotations.*;
-
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
