@@ -34,7 +34,7 @@ pipeline {
                                         ),
                                         string(
                                                 defaultValue: 'scriptcrunch',
-                                                name: 'STRING-PARAMETER',
+                                                name: 'STRING_PARAMETER',
                                                 trim: true
                                         )
                             ])
@@ -52,7 +52,8 @@ pipeline {
                         "*****************************\n" +
                         "*****************************"
                 echo "env boolean param is : ${env.IS_ENABLED}"
-                echo "env string param is : ${env.CHOICE_PARAMETER_01}"
+                echo "env string param is : ${env.STRING_PARAMETER}"
+                echo "env choice param is : ${env.CHOICE_PARAMETER_01}"
 //                sh 'printenv'
                 echo "*****************************\n" +
                         "*****************************\n" +
