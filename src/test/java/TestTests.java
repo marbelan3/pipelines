@@ -9,12 +9,12 @@ public class TestTests {
     public static String milliseconds;
 
     Logger logger = Logger.getLogger(getClass().getName());
-    private static String choice_parameter_01;
+    private static String choice;
 
     @BeforeClass
     public void beforeClass() {
-        choice_parameter_01 = System.getenv("CHOICE_PARAMETER_01");
-        milliseconds = System.getenv("PERSON");
+        choice = System.getenv("CHOICE");
+        milliseconds = System.getenv("COUNT");
         enabled = Boolean.parseBoolean(System.getenv("IS_ENABLED"));
     }
 
@@ -27,15 +27,15 @@ public class TestTests {
         System.out.println("****************************************");
         System.out.println("***************** " + enabled + " *************");
         System.out.println("***************** " + milliseconds + " *************");
-        System.out.println("***************** " + choice_parameter_01 + " *************");
+        System.out.println("***************** " + choice + " *************");
         System.out.println("****************************************");
         System.out.println("****************************************");
         System.out.println("****************************************");
         System.out.println("****************************************");
         System.out.println("****************************************");
-
-        logger.info("\n*****************************************\n" + choice_parameter_01);
-        Assert.assertEquals(choice_parameter_01, "ONE");
+        Assert.assertEquals(choice, "FIVE");
+        Assert.assertEquals(milliseconds, "1000");
+        Assert.assertEquals(enabled, true);
     }
 
 

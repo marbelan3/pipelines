@@ -24,9 +24,9 @@ pipeline {
             steps {
                 script {
                     properties([
-                            parameters([choice(choices: ['ONE', 'TWO', 'THREE'], name: 'CHOICE_PARAMETER_01'),
+                            parameters([choice(choices: ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE'], name: 'CHOICE'),
                                         booleanParam(defaultValue: true, description: '', name: 'IS_ENABLED'),
-                                        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+                                        string(name: 'COUNT', defaultValue: '0', description: 'SET MLS CNT')
 
                             ])
                     ])
@@ -44,7 +44,7 @@ pipeline {
                         "*****************************"
                 echo "env boolean param is : ${env.IS_ENABLED}"
                 echo "env string param is : ${env.PERSON}"
-                echo "env choice param is : ${env.CHOICE_PARAMETER_01}"
+                echo "env choice param is : ${env.COUNT}"
 //                sh 'printenv'
                 echo "*****************************\n" +
                         "*****************************\n" +
