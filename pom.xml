@@ -37,7 +37,10 @@
                     <testFailureIgnore>false</testFailureIgnore>
                     <systemPropertyVariables>
                         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                        <propertyName>milliseconds</propertyName>
+                        <propertyName>enabled</propertyName>
                     </systemPropertyVariables>
+
                     <suiteXmlFiles>
                         <!--suppress UnresolvedMavenProperty -->
 <!--                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>-->
