@@ -5,7 +5,7 @@ import java.util.logging.Logger;
 
 
 public class TestTests {
-    public static boolean enabled = Boolean.parseBoolean(System.getProperty("IS_ENABLED"));
+    public static boolean enabled;
     public static String milliseconds;
 
     Logger logger = Logger.getLogger(getClass().getName());
@@ -15,7 +15,7 @@ public class TestTests {
     public void beforeClass() {
         choice_parameter_01 = System.getenv("CHOICE_PARAMETER_01");
         milliseconds = System.getProperty("milliseconds");
-        enabled = Boolean.parseBoolean(System.getenv("isBoolean"));
+        enabled = Boolean.parseBoolean(System.getProperty("IS_ENABLED"));
         logger.info("choice_parameter_01" + choice_parameter_01);
     }
 
