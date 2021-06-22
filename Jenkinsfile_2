@@ -26,17 +26,8 @@ pipeline {
                     properties([
                             parameters([choice(choices: ['ONE', 'TWO', 'THREE'], name: 'CHOICE_PARAMETER_01'),
                                         booleanParam(defaultValue: true, description: '', name: 'IS_ENABLED'),
-                                        text(defaultValue: '''
-                                this is a multi-line 
-                                string parameter example
-                                ''',
-                                                name: 'MULTI-LINE-STRING'
-                                        ),
-                                        string(
-                                                defaultValue: 'scriptcrunch',
-                                                name: 'STRING_PARAMETER',
-                                                trim: true
-                                        )
+                                        string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+
                             ])
                     ])
                 }
@@ -52,7 +43,7 @@ pipeline {
                         "*****************************\n" +
                         "*****************************"
                 echo "env boolean param is : ${env.IS_ENABLED}"
-                echo "env string param is : ${env.STRING_PARAMETER}"
+                echo "env string param is : ${env.PERSON}"
                 echo "env choice param is : ${env.CHOICE_PARAMETER_01}"
 //                sh 'printenv'
                 echo "*****************************\n" +
