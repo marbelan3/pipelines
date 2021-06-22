@@ -14,9 +14,8 @@ public class TestTests {
     @BeforeClass
     public void beforeClass() {
         choice_parameter_01 = System.getenv("CHOICE_PARAMETER_01");
-        milliseconds = System.getProperty("milliseconds");
+        milliseconds = System.getProperty("PERSON");
         enabled = Boolean.parseBoolean(System.getProperty("IS_ENABLED"));
-        logger.info("choice_parameter_01" + choice_parameter_01);
     }
 
     @Test
@@ -27,6 +26,8 @@ public class TestTests {
         System.out.println("****************************************");
         System.out.println("****************************************");
         System.out.println("***************** " + enabled + " *************");
+        System.out.println("***************** " + milliseconds + " *************");
+        System.out.println("***************** " + choice_parameter_01 + " *************");
         System.out.println("****************************************");
         System.out.println("****************************************");
         System.out.println("****************************************");
