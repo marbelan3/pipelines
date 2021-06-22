@@ -43,8 +43,8 @@ pipeline {
                         "*****************************\n" +
                         "*****************************"
                 echo "env boolean param is : ${env.IS_ENABLED}"
-                echo "env string param is : ${env.PERSON}"
-                echo "env choice param is : ${env.COUNT}"
+                echo "env string param is : ${env.COUNT}"
+                echo "env choice param is : ${env.CHOICE}"
 //                sh 'printenv'
                 echo "*****************************\n" +
                         "*****************************\n" +
