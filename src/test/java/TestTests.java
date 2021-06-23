@@ -53,11 +53,12 @@ public class TestTests {
         List<Object[]> list = new ArrayList<>();
         List<String> collect = Arrays.stream(dataProviderStr.split(",")).collect(Collectors.toList());
         for (String c : collect) {
-            System.out.println(c);
-            System.out.println(c);
-            System.out.println(c);
-            System.out.println(c);
-            System.out.println(c);
+            System.out.println(c.trim());
+            System.out.println(c.trim());
+            System.out.println(c.trim());
+            System.out.println(c.trim());
+            System.out.println(c.trim());
+            System.out.println(c.trim());
         }
         for (String s : collect) {
             System.out.println("-----------------------0---------------------------");
@@ -74,8 +75,8 @@ public class TestTests {
             System.out.println(s.split(" ")[1].trim());
             System.out.println(s.split(" ")[1].trim());
             SecAndDescribe secAndDescribe = new SecAndDescribe();
-            secAndDescribe.setSec(Integer.parseInt(s.split(" ")[0].trim()));
-            secAndDescribe.setDescribe(s.split(" ")[1].trim());
+            secAndDescribe.setSec(Integer.parseInt(s.trim().split(" ")[0].trim()));
+            secAndDescribe.setDescribe(s.trim().split(" ")[1].trim());
             System.out.println("-----------------------1---------------------------");
             list.add(new Object[]{secAndDescribe});
             System.out.println("------------------------2--------------------------");
