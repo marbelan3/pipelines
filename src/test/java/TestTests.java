@@ -62,10 +62,11 @@ public class TestTests {
             SecAndDescribe secAndDescribe = new SecAndDescribe();
             secAndDescribe.setSec(Integer.parseInt(s.split(" ")[0].trim()));
             secAndDescribe.setDescribe(s.split(" ")[1].trim());
-            System.out.println("--------------------------------------------------");
+            System.out.println("-----------------------1---------------------------");
             list.add(new Object[]{secAndDescribe});
-            System.out.println("--------------------------------------------------");
+            System.out.println("------------------------2--------------------------");
         }
+        System.out.println("--------------------------3------------------------");
         return list.toArray(new Object[list.size()][]);
     }
 
