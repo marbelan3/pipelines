@@ -12,7 +12,7 @@ public class TestTests {
     private boolean enabled;
     protected String sec;
     protected String choice;
-    protected List<String> dataProviderStr;
+    protected String dataProviderStr;
 
     Logger logger = Logger.getLogger(getClass().getName());
 
@@ -20,7 +20,8 @@ public class TestTests {
     public void beforeClass() {
         choice = System.getenv("CHOICE");
         sec = System.getenv("COUNT");
-        dataProviderStr = Arrays.stream(System.getenv("DATA_PROVIDER_STRING").split(",")).map(String::trim).collect(Collectors.toList());
+//        dataProviderStr = System.getenv("DATA_PROVIDER_STRING");
+        dataProviderStr = "1,2,3";
         enabled = Boolean.parseBoolean(System.getenv("IS_ENABLED"));
     }
 
@@ -45,12 +46,10 @@ public class TestTests {
     }
 
     @DataProvider
-    public Object[][] getData() {
-        return new Object[][]{
-                {
-                        dataProviderStr.stream().map(Integer::parseInt)
-                }
-        };
+    public Object[] getData() {
+        return Arrays.stream(dataProviderStr.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt).toArray();
     }
 
     @Test(dataProvider = "getData")
@@ -63,5 +62,11 @@ public class TestTests {
         System.out.println("**************** W A I T : " + sec + " S E C *****************");
     }
 
-
+    public static void main(String[] args) {
+        String dataProviderStr = "1,2,3";
+        System.out.println(Arrays.stream(dataProviderStr.split(","))
+                .map(String::trim)
+                .map(Integer::parseInt)
+                .collect(Collectors.toList()));
+    }
 }
