@@ -53,12 +53,19 @@ public class TestTests {
         List<Object[]> list = new ArrayList<>();
         List<String> collect = Arrays.stream(dataProviderStr.split(",")).collect(Collectors.toList());
         for (String s : collect) {
+            System.out.println("-----------------------0---------------------------");
             System.out.println(Integer.parseInt(s.split(" ")[0].trim()));
             System.out.println(Integer.parseInt(s.split(" ")[0].trim()));
             System.out.println(Integer.parseInt(s.split(" ")[0].trim()));
             System.out.println(Integer.parseInt(s.split(" ")[0].trim()));
             System.out.println(Integer.parseInt(s.split(" ")[0].trim()));
             System.out.println(Integer.parseInt(s.split(" ")[0].trim()));
+            System.out.println(s.split(" ")[1].trim());
+            System.out.println(s.split(" ")[1].trim());
+            System.out.println(s.split(" ")[1].trim());
+            System.out.println(s.split(" ")[1].trim());
+            System.out.println(s.split(" ")[1].trim());
+            System.out.println(s.split(" ")[1].trim());
             SecAndDescribe secAndDescribe = new SecAndDescribe();
             secAndDescribe.setSec(Integer.parseInt(s.split(" ")[0].trim()));
             secAndDescribe.setDescribe(s.split(" ")[1].trim());
