@@ -22,8 +22,8 @@ public class TestTests {
     public void beforeClass() {
         choice = System.getenv("CHOICE");
         sec = System.getenv("COUNT");
-//        dataProviderStr = System.getenv("DATA_PROVIDER_STRING");
-        dataProviderStr = "1 ONE,2 TWO,3 THREE";
+        dataProviderStr = System.getenv("DATA_PROVIDER_STRING");
+//        dataProviderStr = "1 ONE,2 TWO,3 THREE";
         enabled = Boolean.parseBoolean(System.getenv("IS_ENABLED"));
     }
 
@@ -37,6 +37,7 @@ public class TestTests {
         System.out.println("******************* " + enabled + " ***************");
         System.out.println("******************* " + sec + " ***************");
         System.out.println("******************* " + choice + " ***************");
+        System.out.println("******************* " + dataProviderStr + " ***************");
         System.out.println("****************************************");
         System.out.println("****************************************");
         System.out.println("****************************************");
@@ -49,7 +50,7 @@ public class TestTests {
 
     @DataProvider
     public Object[][] getData() {
-        List<Object[]> list = new ArrayList<Object[]>();
+        List<Object[]> list = new ArrayList<>();
         List<String> collect = Arrays.stream(dataProviderStr.split(",")).collect(Collectors.toList());
         for (String s : collect) {
             list.add(new Object[]{new SecAndDescribe(Integer.parseInt(s.split(" ")[0].trim()), s.split(" ")[1].trim())});
