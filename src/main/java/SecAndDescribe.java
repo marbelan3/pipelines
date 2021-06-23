@@ -2,6 +2,11 @@ import java.util.Objects;
 
 public class SecAndDescribe {
 
+    public SecAndDescribe(int sec, String describe) {
+        this.sec = sec;
+        this.describe = describe;
+    }
+
     int sec;
     String describe;
 

@@ -2,7 +2,9 @@ import com.codeborne.selenide.Selenide;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -20,8 +22,8 @@ public class TestTests {
     public void beforeClass() {
         choice = System.getenv("CHOICE");
         sec = System.getenv("COUNT");
-        dataProviderStr = System.getenv("DATA_PROVIDER_STRING");
-//        dataProviderStr = "1,2,3";
+//        dataProviderStr = System.getenv("DATA_PROVIDER_STRING");
+        dataProviderStr = "1 ONE,2 TWO,3 THREE";
         enabled = Boolean.parseBoolean(System.getenv("IS_ENABLED"));
     }
 
@@ -46,19 +48,26 @@ public class TestTests {
     }
 
     @DataProvider
-    public Object[] getData() {
-        return Arrays.stream(dataProviderStr.split(","))
-                .map(String::trim)
-                .map(Integer::parseInt).toArray();
+    public Object[][] getData() {
+        List<Object[]> list = new ArrayList<Object[]>();
+        List<String> collect = Arrays.stream(dataProviderStr.split(",")).collect(Collectors.toList());
+        for (String s : collect) {
+            list.add(new Object[]{new SecAndDescribe(Integer.parseInt(s.split(" ")[0].trim()), s.split(" ")[1].trim())});
+        }
+        System.out.println(list);
+        return list.toArray(new Object[list.size()][]);
     }
 
+
     @Test(dataProvider = "getData")
-    public void otherWaits(int sec) {
-        Selenide.sleep(sec * 1000);
-        System.out.println("**************** W A I T : " + sec + " S E C *****************");
-        System.out.println("**************** W A I T : " + sec + " S E C *****************");
-        System.out.println("**************** W A I T : " + sec + " S E C *****************");
-        System.out.println("**************** W A I T : " + sec + " S E C *****************");
-        System.out.println("**************** W A I T : " + sec + " S E C *****************");
+    public void otherWaits(SecAndDescribe secObj) {
+        Selenide.sleep(secObj.getSec() * 1000);
+        System.out.println("**************** W A I T : " + secObj.sec + " S E C ************ " + secObj.describe + " ***********");
+        System.out.println("**************** W A I T : " + secObj.sec + " S E C ************ " + secObj.describe + " ***********");
+        System.out.println("**************** W A I T : " + secObj.sec + " S E C ************ " + secObj.describe + " ***********");
+        System.out.println("**************** W A I T : " + secObj.sec + " S E C ************ " + secObj.describe + " ***********");
+        System.out.println("**************** W A I T : " + secObj.sec + " S E C ************ " + secObj.describe + " ***********");
+        System.out.println("**************** W A I T : " + secObj.sec + " S E C ************ " + secObj.describe + " ***********");
+
     }
 }
