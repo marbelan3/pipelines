@@ -52,16 +52,9 @@ public class TestTests {
     public Object[][] getData() {
         List<Object[]> list = new ArrayList<>();
         List<String> collect = Arrays.stream(dataProviderStr.split(",")).collect(Collectors.toList());
-        System.out.println(collect.toString());
         for (String s : collect) {
-            SecAndDescribe secAndDescribe = new SecAndDescribe();
-            secAndDescribe.setSec(Integer.parseInt(s.trim().split(" ")[0].trim()));
-            secAndDescribe.setDescribe(s.trim().split(" ")[1].trim());
-            System.out.println("-----------------------1---------------------------");
-            list.add(new Object[]{secAndDescribe});
-            System.out.println("------------------------2--------------------------");
+            list.add(new Object[]{new SecAndDescribe(Integer.parseInt(s.trim().split(" ")[0].trim()), s.trim().split(" ")[1].trim())});
         }
-        System.out.println("--------------------------3------------------------");
         return list.toArray(new Object[list.size()][]);
     }
 
