@@ -16,14 +16,14 @@ public class TestTests {
     protected String choice;
     protected String dataProviderStr;
 
-    Logger logger = Logger.getLogger(getClass().getName());
+//    Logger logger = Logger.getLogger(getClass().getName());
 
     @BeforeClass
     public void beforeClass() {
         choice = System.getenv("CHOICE");
         sec = System.getenv("COUNT");
-        dataProviderStr = System.getenv("DATA_PROVIDER_STRING");
-//        dataProviderStr = "1 ONE,2 TWO,3 THREE";
+//        dataProviderStr = System.getenv("DATA_PROVIDER_STRING");
+        dataProviderStr = "1 ONE,2 TWO,3 THREE";
         enabled = Boolean.parseBoolean(System.getenv("IS_ENABLED"));
     }
 
@@ -53,9 +53,17 @@ public class TestTests {
         List<Object[]> list = new ArrayList<>();
         List<String> collect = Arrays.stream(dataProviderStr.split(",")).collect(Collectors.toList());
         for (String s : collect) {
+        System.out.println(Integer.parseInt(s.split(" ")[0].trim()));
+        System.out.println(Integer.parseInt(s.split(" ")[0].trim()));
+        System.out.println(Integer.parseInt(s.split(" ")[0].trim()));
+        System.out.println(Integer.parseInt(s.split(" ")[0].trim()));
+        System.out.println(Integer.parseInt(s.split(" ")[0].trim()));
+        System.out.println(Integer.parseInt(s.split(" ")[0].trim()));
             list.add(new Object[]{new SecAndDescribe(Integer.parseInt(s.split(" ")[0].trim()), s.split(" ")[1].trim())});
         }
-        System.out.println(list);
+        System.out.println(list.toString());
+        System.out.println(list.toString());
+        System.out.println(list.toString());
         return list.toArray(new Object[list.size()][]);
     }
 
