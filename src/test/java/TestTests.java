@@ -20,8 +20,8 @@ public class TestTests {
     public void beforeClass() {
         choice = System.getenv("CHOICE");
         sec = System.getenv("COUNT");
-//        dataProviderStr = System.getenv("DATA_PROVIDER_STRING");
-        dataProviderStr = "1,2,3";
+        dataProviderStr = System.getenv("DATA_PROVIDER_STRING");
+//        dataProviderStr = "1,2,3";
         enabled = Boolean.parseBoolean(System.getenv("IS_ENABLED"));
     }
 
@@ -60,13 +60,5 @@ public class TestTests {
         System.out.println("**************** W A I T : " + sec + " S E C *****************");
         System.out.println("**************** W A I T : " + sec + " S E C *****************");
         System.out.println("**************** W A I T : " + sec + " S E C *****************");
-    }
-
-    public static void main(String[] args) {
-        String dataProviderStr = "1,2,3";
-        System.out.println(Arrays.stream(dataProviderStr.split(","))
-                .map(String::trim)
-                .map(Integer::parseInt)
-                .collect(Collectors.toList()));
     }
 }
