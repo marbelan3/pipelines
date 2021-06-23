@@ -2,13 +2,17 @@ import com.codeborne.selenide.Selenide;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 
 public class TestTests {
     private boolean enabled;
     protected String sec;
     protected String choice;
+    protected List<String> dataProviderStr;
 
     Logger logger = Logger.getLogger(getClass().getName());
 
@@ -16,6 +20,7 @@ public class TestTests {
     public void beforeClass() {
         choice = System.getenv("CHOICE");
         sec = System.getenv("COUNT");
+        dataProviderStr = Arrays.stream(System.getenv("DATA_PROVIDER_STRING").split(",")).map(String::trim).collect(Collectors.toList());
         enabled = Boolean.parseBoolean(System.getenv("IS_ENABLED"));
     }
 
@@ -43,7 +48,7 @@ public class TestTests {
     public Object[][] getData() {
         return new Object[][]{
                 {
-                        Integer.parseInt(sec)
+                        dataProviderStr.stream().map(Integer::parseInt)
                 }
         };
     }

@@ -26,7 +26,8 @@ pipeline {
                     properties([
                             parameters([choice(choices: ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE'], name: 'CHOICE'),
                                         booleanParam(defaultValue: true, description: '', name: 'IS_ENABLED'),
-                                        string(name: 'COUNT', defaultValue: '0', description: 'SET MLS CNT')
+                                        string(name: 'COUNT', defaultValue: '0', description: 'Please set seconds count'),
+                                        string(name: 'DATA_PROVIDER_STRING', defaultValue: '', description: 'Please set seconds count by comma')
 
                             ])
                     ])
@@ -42,9 +43,10 @@ pipeline {
                         "*****************************\n" +
                         "*****************************\n" +
                         "*****************************"
-                echo "env boolean param is : ${env.IS_ENABLED}"
-                echo "env string param is : ${env.COUNT}"
-                echo "env choice param is : ${env.CHOICE}"
+                echo "env IS_ENABLED boolean param is : ${env.IS_ENABLED}"
+                echo "env COUNTstring param is : ${env.COUNT}"
+                echo "env CHOICE string param is : ${env.CHOICE}"
+                echo "env DATA_PROVIDER_STRING string param is : ${env.DATA_PROVIDER_STRING}"
 //                sh 'printenv'
                 echo "*****************************\n" +
                         "*****************************\n" +
@@ -93,9 +95,6 @@ pipeline {
             when {
                 expression {
                     VALUE_ONE == '1' && VALUE_THREE == '3'
-                    echo "env boolean param is : ${env.IS_ENABLED}"
-                    echo "env boolean param is : ${env.IS_ENABLED}"
-                    echo "env boolean param is : ${env.IS_ENABLED}"
                     echo "env boolean param is : ${env.IS_ENABLED}"
 
                 }
