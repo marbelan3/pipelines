@@ -52,6 +52,13 @@ public class TestTests {
     public Object[][] getData() {
         List<Object[]> list = new ArrayList<>();
         List<String> collect = Arrays.stream(dataProviderStr.split(",")).collect(Collectors.toList());
+        for (String c : collect) {
+            System.out.println(c);
+            System.out.println(c);
+            System.out.println(c);
+            System.out.println(c);
+            System.out.println(c);
+        }
         for (String s : collect) {
             System.out.println("-----------------------0---------------------------");
             System.out.println(Integer.parseInt(s.split(" ")[0].trim()));
