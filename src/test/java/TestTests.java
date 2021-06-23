@@ -53,13 +53,16 @@ public class TestTests {
         List<Object[]> list = new ArrayList<>();
         List<String> collect = Arrays.stream(dataProviderStr.split(",")).collect(Collectors.toList());
         for (String s : collect) {
-        System.out.println(Integer.parseInt(s.split(" ")[0].trim()));
-        System.out.println(Integer.parseInt(s.split(" ")[0].trim()));
-        System.out.println(Integer.parseInt(s.split(" ")[0].trim()));
-        System.out.println(Integer.parseInt(s.split(" ")[0].trim()));
-        System.out.println(Integer.parseInt(s.split(" ")[0].trim()));
-        System.out.println(Integer.parseInt(s.split(" ")[0].trim()));
-            list.add(new Object[]{new SecAndDescribe(Integer.parseInt(s.split(" ")[0].trim()), s.split(" ")[1].trim())});
+            System.out.println(Integer.parseInt(s.split(" ")[0].trim()));
+            System.out.println(Integer.parseInt(s.split(" ")[0].trim()));
+            System.out.println(Integer.parseInt(s.split(" ")[0].trim()));
+            System.out.println(Integer.parseInt(s.split(" ")[0].trim()));
+            System.out.println(Integer.parseInt(s.split(" ")[0].trim()));
+            System.out.println(Integer.parseInt(s.split(" ")[0].trim()));
+            SecAndDescribe secAndDescribe = new SecAndDescribe();
+            secAndDescribe.setSec(Integer.parseInt(s.split(" ")[0].trim()));
+            secAndDescribe.setDescribe(s.split(" ")[1].trim());
+            list.add(new Object[]{secAndDescribe});
         }
         return list.toArray(new Object[list.size()][]);
     }

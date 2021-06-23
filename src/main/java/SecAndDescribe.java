@@ -7,6 +7,9 @@ public class SecAndDescribe {
         this.describe = describe;
     }
 
+    public SecAndDescribe() {
+    }
+
     int sec;
     String describe;
 
