@@ -61,9 +61,6 @@ public class TestTests {
         System.out.println(Integer.parseInt(s.split(" ")[0].trim()));
             list.add(new Object[]{new SecAndDescribe(Integer.parseInt(s.split(" ")[0].trim()), s.split(" ")[1].trim())});
         }
-        System.out.println(list.toString());
-        System.out.println(list.toString());
-        System.out.println(list.toString());
         return list.toArray(new Object[list.size()][]);
     }
 

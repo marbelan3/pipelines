@@ -13,7 +13,7 @@
         <version.io.qameta.allure.maven>2.10.0</version.io.qameta.allure.maven>
         <maven.compiler.plugin.version>3.7.0</maven.compiler.plugin.version>
         <aspectj.version>1.9.6</aspectj.version>
-        <org.slf4j.version>1.7.25</org.slf4j.version>
+        <slf4j.version>1.7.25</slf4j.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <aspectj.version>1.9.5</aspectj.version>
     </properties>
@@ -43,7 +43,7 @@
 
                     <suiteXmlFiles>
                         <!--suppress UnresolvedMavenProperty -->
-<!--                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>-->
+                        <!--                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>-->
                     </suiteXmlFiles>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
@@ -68,44 +68,47 @@
         </plugins>
     </build>
 
-<dependencies>
-    <!--Lombok-->
-    <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-        <version>${lombok.version}</version>
-        <scope>provided</scope>
-    </dependency>
-    <!--SLF4J-->
-    <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-api</artifactId>
-        <version>${org.slf4j.version}</version>
-        <scope>compile</scope>
-    </dependency>
-    <dependency>
-        <groupId>com.codeborne</groupId>
-        <artifactId>selenide</artifactId>
-        <version>5.17.0</version>
-    </dependency>
+    <dependencies>
+        <!--Lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>5.17.0</version>
+        </dependency>
 
-    <dependency>
-        <groupId>org.testng</groupId>
-        <artifactId>testng</artifactId>
-        <version>7.3.0</version>
-        <scope>test</scope>
-    </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>7.3.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>2.13.8</version>
+        </dependency>
 
-    <dependency>
-        <groupId>io.qameta.allure</groupId>
-        <artifactId>allure-testng</artifactId>
-        <version>2.13.8</version>
-    </dependency>
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-selenide</artifactId>
+            <version>2.13.8</version>
+        </dependency>
+    </dependencies>
 
-    <dependency>
-        <groupId>io.qameta.allure</groupId>
-        <artifactId>allure-selenide</artifactId>
-        <version>2.13.8</version>
-    </dependency>
-</dependencies>
 </project>
