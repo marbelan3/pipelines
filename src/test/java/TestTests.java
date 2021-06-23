@@ -1,3 +1,4 @@
+import com.codeborne.selenide.Selenide;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
@@ -5,11 +6,11 @@ import java.util.logging.Logger;
 
 
 public class TestTests {
-    public static boolean enabled;
-    public static String milliseconds;
+    private boolean enabled;
+    protected String milliseconds;
+    protected String choice;
 
     Logger logger = Logger.getLogger(getClass().getName());
-    private static String choice;
 
     @BeforeClass
     public void beforeClass() {
@@ -25,9 +26,9 @@ public class TestTests {
         System.out.println("****************************************");
         System.out.println("****************************************");
         System.out.println("****************************************");
-        System.out.println("***************** " + enabled + " *************");
-        System.out.println("***************** " + milliseconds + " *************");
-        System.out.println("***************** " + choice + " *************");
+        System.out.println("******************* " + enabled + " ***************");
+        System.out.println("******************* " + milliseconds + " ***************");
+        System.out.println("******************* " + choice + " ***************");
         System.out.println("****************************************");
         System.out.println("****************************************");
         System.out.println("****************************************");
@@ -35,7 +36,26 @@ public class TestTests {
         System.out.println("****************************************");
         Assert.assertEquals(choice, "FIVE");
         Assert.assertEquals(milliseconds, "1000");
-        Assert.assertEquals(enabled, true);
+        Assert.assertTrue(enabled);
+    }
+
+    @DataProvider
+    public Object[][] getData() {
+        return new Object[][]{
+                {
+                        milliseconds
+                }
+        };
+    }
+
+    @Test(dataProvider = "getData")
+    public void otherWaits(int sec) {
+        Selenide.sleep(sec * 1000);
+        System.out.println("**************** W A I T : " + sec + " S E C *****************");
+        System.out.println("**************** W A I T : " + sec + " S E C *****************");
+        System.out.println("**************** W A I T : " + sec + " S E C *****************");
+        System.out.println("**************** W A I T : " + sec + " S E C *****************");
+        System.out.println("**************** W A I T : " + sec + " S E C *****************");
     }
 
 
