@@ -95,11 +95,11 @@ pipeline {
             when {
                 expression {
                     VALUE_ONE == '1' && VALUE_THREE == '3'
-                    echo "env boolean param is : ${env.IS_ENABLED}"
 
                 }
             }
             steps {
+                echo "env boolean param is : ${env.IS_ENABLED}"
                 echo 'WHEN with AND expression works!'
             }
         }
