@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 public class TestTests {
     private boolean enabled;
-    protected String milliseconds;
+    protected String sec;
     protected String choice;
 
     Logger logger = Logger.getLogger(getClass().getName());
@@ -15,7 +15,7 @@ public class TestTests {
     @BeforeClass
     public void beforeClass() {
         choice = System.getenv("CHOICE");
-        milliseconds = System.getenv("COUNT");
+        sec = System.getenv("COUNT");
         enabled = Boolean.parseBoolean(System.getenv("IS_ENABLED"));
     }
 
@@ -27,7 +27,7 @@ public class TestTests {
         System.out.println("****************************************");
         System.out.println("****************************************");
         System.out.println("******************* " + enabled + " ***************");
-        System.out.println("******************* " + milliseconds + " ***************");
+        System.out.println("******************* " + sec + " ***************");
         System.out.println("******************* " + choice + " ***************");
         System.out.println("****************************************");
         System.out.println("****************************************");
@@ -35,7 +35,7 @@ public class TestTests {
         System.out.println("****************************************");
         System.out.println("****************************************");
         Assert.assertEquals(choice, "FIVE");
-        Assert.assertEquals(milliseconds, "1000");
+        Assert.assertEquals(sec, "3");
         Assert.assertTrue(enabled);
     }
 
@@ -43,7 +43,7 @@ public class TestTests {
     public Object[][] getData() {
         return new Object[][]{
                 {
-                        milliseconds
+                        Integer.parseInt(sec)
                 }
         };
     }
