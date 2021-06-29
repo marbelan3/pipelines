@@ -159,8 +159,11 @@ pipeline {
                     from: "marbelan3@gmail.com"
             )
             slackSend channel: '#tests-ui-tests-api',
-                    color: 'green',
+                    color: '#BADA55',
                     message: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
+            slackUploadFile filePath: "src/main/resources/test.txt", initialComment:  "HEY HEY"
+            def slackResponse = slackSend(channel: "emoji-demo", message: "Here is the primary message")
+            slackResponse.addReaction("thumbsup")
 
         }
         failure {
