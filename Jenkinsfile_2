@@ -198,19 +198,6 @@ pipeline {
                     from: "marbelan3@gmail.com"
             )
         }
-        always {
-            echo 'always runs regardless of the completion status of the Pipeline run'
-            script {
-                allure([
-                        includeProperties: false,
-                        jdk              : '',
-                        properties       : [],
-                        reportBuildPolicy: 'ALWAYS',
-                        results          : [[path: 'target/allure-results']]
-                ])
-            }
-
-        }
         unstable {
             echo 'current Pipeline has "unstable" state, usually by a failed test, code violations and other causes, in order to run. Usually represented in a web UI with a yellow indication.'
         }
