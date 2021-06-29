@@ -164,57 +164,58 @@ pipeline {
 
         }
 
-//        success {
-//            echo 'step will run only if the build is successful'
-//            emailext(
-//                    subject: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-//                    body: """<p>SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-//                    "J O B    S U C C E S S ! ! !"
-//                    "J O B    S U C C E S S ! ! !"
-//                    "J O B    S U C C E S S ! ! !"
-//            <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
-//                    to: "marbelan3@gmail.com",
-//                    from: "marbelan3@gmail.com"
-//            )
+        success {
+            echo 'step will run only if the build is successful'
+            emailext(
+                    subject: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                    body: """<p>SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+                    "J O B    S U C C E S S ! ! !"
+                    "J O B    S U C C E S S ! ! !"
+                    "J O B    S U C C E S S ! ! !"
+            <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
+                    to: "marbelan3@gmail.com",
+                    from: "marbelan3@gmail.com"
+            )
 //            slackSend channel: 'tests-ui-tests-api', color: '#BADA55', iconEmoji: 'thumbsup', message: 'test test test', tokenCredentialId: 'pipeline-slack-tocken', username: 'test useeeeerrrrrr'
-////            slackSend channel: '#tests-ui-tests-api',
-////                    color: '#BADA55',
-////                    message: "The pipeline ${currentBuild.fullDisplayName} completed successfully. ${slackResponse}"
-////            slackUploadFile filePath: "src/main/resources/test.txt", initialComment:  "HEY HEY"
-//        }
-//        failure {
-//            echo 'only when the Pipeline is currently in a "failed" state run, usually expressed in the Web UI with the red indicator.'
-//            emailext(
-//                    subject: "UNSUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
-//                    body: """<p>UNSUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
-//                    "J O B    U N N N N N * * * * * * S U C C E S S ! ! !"
-//                    "J O B    U N N N N N * * * * * * S U C C E S S ! ! !"
-//                    "J O B    U N N N N N * * * * * * S U C C E S S ! ! !"
-//                    "J O B    U N N N N N * * * * * * S U C C E S S ! ! !"
-//            <h3>Check Allure Report at &QUOT;<a href='${env.BUILD_URL}${env.ALLURE}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT; </h3>
-//            <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
-//                    to: "marbelan3@gmail.com",
-//                    from: "marbelan3@gmail.com"
-//            )
-//        }
-//        always {
-//            echo 'always runs regardless of the completion status of the Pipeline run'
-//            script {
-//                allure([
-//                        includeProperties: false,
-//                        jdk              : '',
-//                        properties       : [],
-//                        reportBuildPolicy: 'ALWAYS',
-//                        results          : [[path: 'target/allure-results']]
-//                ])
-//            }
-//
-//        }
-//        unstable {
-//            echo 'current Pipeline has "unstable" state, usually by a failed test, code violations and other causes, in order to run. Usually represented in a web UI with a yellow indication.'
-//        }
-//        changed {
-//            echo 'can only be run if the current Pipeline is running at a different state than the previously completed Pipeline'
-//        }
+            slackSuccessNotifier()
+//            slackSend channel: '#tests-ui-tests-api',
+//                    color: '#BADA55',
+//                    message: "The pipeline ${currentBuild.fullDisplayName} completed successfully. ${slackResponse}"
+//            slackUploadFile filePath: "src/main/resources/test.txt", initialComment:  "HEY HEY"
+        }
+        failure {
+            echo 'only when the Pipeline is currently in a "failed" state run, usually expressed in the Web UI with the red indicator.'
+            emailext(
+                    subject: "UNSUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+                    body: """<p>UNSUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':</p>
+                    "J O B    U N N N N N * * * * * * S U C C E S S ! ! !"
+                    "J O B    U N N N N N * * * * * * S U C C E S S ! ! !"
+                    "J O B    U N N N N N * * * * * * S U C C E S S ! ! !"
+                    "J O B    U N N N N N * * * * * * S U C C E S S ! ! !"
+            <h3>Check Allure Report at &QUOT;<a href='${env.BUILD_URL}${env.ALLURE}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT; </h3>
+            <p>Check console output at &QUOT;<a href='${env.BUILD_URL}'>${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>&QUOT;</p>""",
+                    to: "marbelan3@gmail.com",
+                    from: "marbelan3@gmail.com"
+            )
+        }
+        always {
+            echo 'always runs regardless of the completion status of the Pipeline run'
+            script {
+                allure([
+                        includeProperties: false,
+                        jdk              : '',
+                        properties       : [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results          : [[path: 'target/allure-results']]
+                ])
+            }
+
+        }
+        unstable {
+            echo 'current Pipeline has "unstable" state, usually by a failed test, code violations and other causes, in order to run. Usually represented in a web UI with a yellow indication.'
+        }
+        changed {
+            echo 'can only be run if the current Pipeline is running at a different state than the previously completed Pipeline'
+        }
     }
 }
