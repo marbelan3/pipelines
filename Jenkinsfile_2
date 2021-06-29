@@ -149,7 +149,20 @@ pipeline {
 
     }
     post {
-        slackNotifier(currentBuild.currentResult)
+        always {
+            slackNotifier(currentBuild.currentResult)
+            echo 'always runs regardless of the completion status of the Pipeline run'
+            script {
+                allure([
+                        includeProperties: false,
+                        jdk              : '',
+                        properties       : [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results          : [[path: 'target/allure-results']]
+                ])
+            }
+
+        }
 
 //        success {
 //            echo 'step will run only if the build is successful'
