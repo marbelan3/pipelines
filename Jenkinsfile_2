@@ -150,7 +150,7 @@ pipeline {
     }
     post {
         always {
-            echo '${currentBuild.result}'
+            echo ${currentBuild.result}
 //            echo 'always runs regardless of the completion status of the Pipeline run'
 //            script {
 //                allure([
