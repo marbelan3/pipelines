@@ -22,8 +22,8 @@ public class TestTests {
     public void beforeClass() {
         choice = System.getenv("CHOICE");
         sec = System.getenv("COUNT");
-        dataProviderStr = System.getenv("DATA_PROVIDER_STRING");
-//        dataProviderStr = "1 ONE,2 TWO,3 THREE";
+//        dataProviderStr = System.getenv("DATA_PROVIDER_STRING");
+        dataProviderStr = "1 ONE,2 TWO,3 THREE";
         enabled = Boolean.parseBoolean(System.getenv("IS_ENABLED"));
     }
 
