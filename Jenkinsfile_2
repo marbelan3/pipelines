@@ -158,7 +158,7 @@ pipeline {
                     to: "marbelan3@gmail.com",
                     from: "marbelan3@gmail.com"
             )
-            slackSend channel: '#automation-dmw6481',
+            slackSend channel: '#tests-ui-tests-api',
                     color: 'green',
                     message: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
 
