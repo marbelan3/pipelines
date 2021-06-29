@@ -150,7 +150,7 @@ pipeline {
     }
     post {
         always {
-            slackNotifier(${currentBuild.result})
+            slackNotifier("${currentBuild.result}")
 //            echo 'always runs regardless of the completion status of the Pipeline run'
 //            script {
 //                allure([
