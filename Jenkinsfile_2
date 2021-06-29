@@ -162,10 +162,8 @@ pipeline {
             )
             slackSend channel: '#tests-ui-tests-api',
                     color: '#BADA55',
-                    message: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
+                    message: "The pipeline ${currentBuild.fullDisplayName} completed successfully. ${slackResponse}"
             slackUploadFile filePath: "src/main/resources/test.txt", initialComment:  "HEY HEY"
-            slackResponse.addReaction("thumbsup")
-
         }
         failure {
             echo 'only when the Pipeline is currently in a "failed" state run, usually expressed in the Web UI with the red indicator.'
