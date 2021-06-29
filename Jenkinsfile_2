@@ -1,3 +1,5 @@
+def slackResponse = slackSend(channel: "emoji-demo", message: "Here is the primary message")
+
 pipeline {
     agent any
 //    tools { maven 'Maven' }
@@ -162,7 +164,6 @@ pipeline {
                     color: '#BADA55',
                     message: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
             slackUploadFile filePath: "src/main/resources/test.txt", initialComment:  "HEY HEY"
-            def slackResponse = slackSend(channel: "emoji-demo", message: "Here is the primary message")
             slackResponse.addReaction("thumbsup")
 
         }
