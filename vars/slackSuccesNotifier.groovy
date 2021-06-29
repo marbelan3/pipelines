@@ -3,5 +3,5 @@
 def call() {
     slackSend channel: '#tests-ui-tests-api',
             color: '#BADA55',
-            message: "The pipeline ${currentBuild.fullDisplayName} completed successfully. ${slackResponse}"
+            message: "The pipeline ${currentBuild.fullDisplayName} completed successfully."
 }
