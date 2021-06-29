@@ -1,4 +1,4 @@
-def slackResponse = slackSend(channel: "emoji-demo", message: "Here is the primary message")
+//def slackResponse = slackSend(channel: "tests-ui-tests-api", message: "Here is the primary message")
 
 pipeline {
     agent any
@@ -160,10 +160,10 @@ pipeline {
                     to: "marbelan3@gmail.com",
                     from: "marbelan3@gmail.com"
             )
-            slackSend channel: '#tests-ui-tests-api',
-                    color: '#BADA55',
-                    message: "The pipeline ${currentBuild.fullDisplayName} completed successfully. ${slackResponse}"
-            slackUploadFile filePath: "src/main/resources/test.txt", initialComment:  "HEY HEY"
+//            slackSend channel: '#tests-ui-tests-api',
+//                    color: '#BADA55',
+//                    message: "The pipeline ${currentBuild.fullDisplayName} completed successfully. ${slackResponse}"
+//            slackUploadFile filePath: "src/main/resources/test.txt", initialComment:  "HEY HEY"
         }
         failure {
             echo 'only when the Pipeline is currently in a "failed" state run, usually expressed in the Web UI with the red indicator.'
