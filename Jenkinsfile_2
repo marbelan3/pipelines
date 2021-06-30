@@ -176,11 +176,7 @@ pipeline {
                     to: "marbelan3@gmail.com",
                     from: "marbelan3@gmail.com"
             )
-//            slackSend channel: 'tests-ui-tests-api', color: '#BADA55', iconEmoji: 'thumbsup', message: 'test test test', tokenCredentialId: 'pipeline-slack-tocken', username: 'test useeeeerrrrrr'
             slackSuccessNotifier()
-//            slackSend channel: '#tests-ui-tests-api',
-//                    color: '#BADA55',
-//                    message: "The pipeline ${currentBuild.fullDisplayName} completed successfully. ${slackResponse}"
 //            slackUploadFile filePath: "src/main/resources/test.txt", initialComment:  "HEY HEY"
         }
         failure {
