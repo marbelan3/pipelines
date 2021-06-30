@@ -1,6 +1,10 @@
 /* import shared library */
 @Library('jenkins-shared-library') _
 def slackResponse = slackSend(channel: "tests-ui-tests-api", message: "Here is the primary message")
+def icons = [":unicorn_face:", ":beer:", ":bee:", ":man_dancing:", ":party_parrot:", ":ghost:", ":dancer:", ":scream_cat:"]
+def randomIndex = (new Random()).nextInt(icons.size())
+def message = "@here Build <${env.BUILD_URL}|${currentBuild.displayName}> successfuly deployed to the production ${icons[randomIndex]}"
+
 
 pipeline {
     agent any
@@ -40,6 +44,7 @@ pipeline {
         }
         stage('Test') {
             steps {
+                slackSend(message: message, channel: '#ests-ui-tests-api', color: 'good', token: 'token')
                 slackSend(channel: slackResponse.threadId, message: "Thread reply #1")
                 slackSend(channel: slackResponse.threadId, message: "Thread reply #2")
                 script {
