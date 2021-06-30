@@ -177,9 +177,11 @@ pipeline {
                     from: "marbelan3@gmail.com"
             )
             slackSuccessNotifier()
-            def slackResponse = slackSend(channel: "tests-ui-tests-api", message: "Here is the primary message")
-            slackSend(channel: slackResponse.threadId, message: "Thread reply #1")
-            slackSend(channel: slackResponse.threadId, message: "Thread reply #2")
+            steps{
+                def slackResponse = slackSend(channel: "tests-ui-tests-api", message: "Here is the primary message")
+                slackSend(channel: slackResponse.threadId, message: "Thread reply #1")
+                slackSend(channel: slackResponse.threadId, message: "Thread reply #2")
+            }
 //            slackUploadFile filePath: "src/main/resources/test.txt", initialComment:  "HEY HEY"
         }
         failure {
