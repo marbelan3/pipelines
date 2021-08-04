@@ -14,6 +14,7 @@ public class TestTests {
     private boolean enabled;
     protected String sec;
     protected String choice;
+    protected String branch;
     protected String dataProviderStr;
 
 //    Logger logger = Logger.getLogger(getClass().getName());
@@ -21,6 +22,7 @@ public class TestTests {
     @BeforeClass
     public void beforeClass() {
         choice = System.getenv("CHOICE");
+        branch = System.getenv("BRANCH");
         sec = System.getenv("COUNT");
         dataProviderStr = System.getenv("DATA_PROVIDER_STRING");
 //        dataProviderStr = "1 ONE,2 TWO,3 THREE";
@@ -38,6 +40,7 @@ public class TestTests {
         System.out.println("******************* " + sec + " ***************");
         System.out.println("******************* " + choice + " ***************");
         System.out.println("******************* " + dataProviderStr + " ***************");
+        System.out.println("******************* " + branch + " ***************");
         System.out.println("****************************************");
         System.out.println("****************************************");
         System.out.println("****************************************");
