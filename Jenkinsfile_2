@@ -26,7 +26,8 @@ pipeline {
     stages {
         stage('Checkout SCM') {
             steps {
-                git branch: "${params.BRANCH}", credentialsId: 'marbelan3', url: 'https://github.com/marbelan3/pipelines.git'            }
+                git branch: "${params.BRANCH}", credentialsId: 'marbelan3', url: 'git@github.com:marbelan3/pipelines.git'
+            }
         }
         stage('list credentials ids') {
             steps {
@@ -64,6 +65,7 @@ pipeline {
                 echo "env IS_ENABLED boolean param is : ${env.IS_ENABLED}"
                 echo "env COUNTstring param is : ${env.COUNT}"
                 echo "env CHOICE string param is : ${env.CHOICE}"
+                echo "env CHOICE string param is : ${env.BRANCH}"
                 echo "env DATA_PROVIDER_STRING string param is : ${env.DATA_PROVIDER_STRING}"
 //                sh 'printenv'
                 echo "*****************************\n" +
