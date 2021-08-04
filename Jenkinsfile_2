@@ -31,13 +31,12 @@ pipeline {
                 ))
     }
     stages {
-        stages {
-            stage('Example') {
-                steps {
-                    git branch: "${params.BRANCH}", url: 'https://github.com/marbelan3/pipelines.git'
-                }
+        stage('Example') {
+            steps {
+                git branch: "${params.BRANCH}", url: 'https://github.com/marbelan3/pipelines.git'
             }
         }
+
         stage('Setup parameters') {
             steps {
                 script {
