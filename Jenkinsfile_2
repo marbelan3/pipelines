@@ -44,7 +44,7 @@ pipeline {
             }
         }
         stage('Checkout SCM') {
-            git branch: "${params.BRANCH}", credentialsId: 'marbelan3', url: "https://github.com/marbelan3/pipelines.git"
+            git branch: "${params.BRANCH}", credentialsId: 'marbelan3', url: 'https://github.com/marbelan3/pipelines.git'
         }
         stage('Checkout code') {
             steps {
