@@ -55,13 +55,6 @@ pipeline {
                 git branch: "${params.BRANCH}", credentialsId: 'marbelan3', url: 'git@github.com:marbelan3/pipelines.git'
             }
         }
-        stage('list credentials ids') {
-            steps {
-                script {
-                    sh 'cat $JENKINS_HOME/credentials.xml | grep "<id>"'
-                }
-            }
-        }
         stage('Test') {
             steps {
                 slackSend(message: message, channel: '#ests-ui-tests-api', color: 'good', token: 'token')
