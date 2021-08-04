@@ -48,7 +48,8 @@ pipeline {
                         "*****************************\n" +
                         "*****************************\n" +
                         "*****************************"
-                git branch: "${env.BRANCH}", credentialsId: 'marbelan3', url: 'https://github.com/marbelan3/pipelines.git'
+                checkout([$class: 'GitSCM', branches: [[name: '*/${env.BRANCH}']], extensions: [], userRemoteConfigs: [[credentialsId: '123', url: 'https://github.com/marbelan3/pipelines.git']]])
+//                git branch: "${env.BRANCH}", credentialsId: 'marbelan3', url: 'https://github.com/marbelan3/pipelines.git'
                 echo "*****************************\n" +
                         "*****************************\n" +
                         "*****************************\n" +
