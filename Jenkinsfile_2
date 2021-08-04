@@ -65,11 +65,7 @@ pipeline {
             }
         }
         stage('Checkout SCM') {
-//            git branch: "${params.BRANCH}", credentialsId: 'marbelan3', url: 'git@github.com:marbelan3/pipelines.git'
-            checkout([
-                    $class           : 'GitSCM', branches: [[name: '*/master']],
-                    userRemoteConfigs: [[url: 'git@github.com:marbelan3/pipelines.gitt'], [credentialsId: 'marbelan3']]
-            ])
+            git branch: "${params.BRANCH}", credentialsId: 'marbelan3', url: 'git@github.com:marbelan3/pipelines.git'
         }
         stage('list credentials ids') {
             steps {
