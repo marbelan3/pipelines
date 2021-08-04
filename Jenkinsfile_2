@@ -28,24 +28,10 @@ pipeline {
                 ))
     }
     stages {
-        stage('sshUserPrivateKey') {
+        stage('list credentials ids') {
             steps {
                 script {
-                    withCredentials([
-                            sshUserPrivateKey(
-                                    credentialsId: 'marbelan3',
-                                    keyFileVariable: 'keyFile',
-                                    passphraseVariable: 'Marbels1988',
-                                    usernameVariable: 'marbelan3')
-                    ]) {
-                        print 'keyFile=' + keyFile
-                        print 'passphrase=' + passphrase
-                        print 'username=' + username
-                        print 'keyFile.collect { it }=' + keyFile.collect { it }
-                        print 'passphrase.collect { it }=' + passphrase.collect { it }
-                        print 'username.collect { it }=' + username.collect { it }
-                        print 'keyFileContent=' + readFile(keyFile)
-                    }
+                    sh 'cat $JENKINS_HOME/credentials.xml | grep "<id>"'
                 }
             }
         }
@@ -65,9 +51,9 @@ pipeline {
             }
         }
         stage('Checkout SCM') {
-           steps{
-               git branch: "${params.BRANCH}", credentialsId: 'marbelan3', url: 'git@github.com:marbelan3/pipelines.git'
-           }
+            steps {
+                git branch: "${params.BRANCH}", credentialsId: 'marbelan3', url: 'git@github.com:marbelan3/pipelines.git'
+            }
         }
         stage('list credentials ids') {
             steps {
