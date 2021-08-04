@@ -26,8 +26,7 @@ pipeline {
     stages {
         stage('Checkout SCM') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: '123', url: 'https://github.com/marbelan3/pipelines.git']]])
-            }
+                git branch: "${params.BRANCH}", credentialsId: 'marbelan3', url: 'https://github.com/marbelan3/pipelines.git'            }
         }
         stage('list credentials ids') {
             steps {
