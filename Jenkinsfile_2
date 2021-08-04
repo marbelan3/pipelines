@@ -24,18 +24,6 @@ pipeline {
                 ))
     }
     stages {
-        stage('Checkout SCM') {
-            steps {
-                git branch: "${params.BRANCH}", credentialsId: 'marbelan3', url: 'git@github.com:marbelan3/pipelines.git'
-            }
-        }
-        stage('list credentials ids') {
-            steps {
-                script {
-                    sh 'cat $JENKINS_HOME/credentials.xml | grep "<id>"'
-                }
-            }
-        }
         stage('Setup parameters') {
             steps {
                 script {
@@ -48,6 +36,32 @@ pipeline {
 
                             ])
                     ])
+                }
+            }
+        }
+        stage('Checkout SCM') {
+            steps {
+                echo "*****************************\n" +
+                        "*****************************\n" +
+                        "*****************************\n" +
+                        "*****************************\n" +
+                        "*****************************\n" +
+                        "*****************************\n" +
+                        "*****************************"
+                git branch: "${env.BRANCH}", credentialsId: 'marbelan3', url: 'git@github.com:marbelan3/pipelines.git'
+                echo "*****************************\n" +
+                        "*****************************\n" +
+                        "*****************************\n" +
+                        "*****************************\n" +
+                        "*****************************\n" +
+                        "*****************************\n" +
+                        "*****************************"
+            }
+        }
+        stage('list credentials ids') {
+            steps {
+                script {
+                    sh 'cat $JENKINS_HOME/credentials.xml | grep "<id>"'
                 }
             }
         }
