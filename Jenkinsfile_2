@@ -28,11 +28,13 @@ pipeline {
             steps {
                 script {
                     properties([
-                            parameters([choice(choices: ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE'], name: 'CHOICE'),
-                                        booleanParam(defaultValue: true, description: '', name: 'IS_ENABLED'),
-                                        string(name: 'COUNT', defaultValue: '0', description: 'Please set seconds count'),
-                                        string(name: 'BRANCH', defaultValue: 'master', description: 'Please chose the branch'),
-                                        string(name: 'DATA_PROVIDER_STRING', defaultValue: '', description: 'Please set seconds count by comma')
+                            parameters([
+                                    choice(choices: ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE'], name: 'CHOICE'),
+                                    choice(choices: ['master', 'myNew'], name: 'BRANCH'),
+                                    booleanParam(defaultValue: true, description: '', name: 'IS_ENABLED'),
+                                    string(name: 'COUNT', defaultValue: '0', description: 'Please set seconds count'),
+//                                    string(name: 'BRANCH', defaultValue: 'master', description: 'Please chose the branch'),
+                                    string(name: 'DATA_PROVIDER_STRING', defaultValue: '', description: 'Please set seconds count by comma')
 
                             ])
                     ])
