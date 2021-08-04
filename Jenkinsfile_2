@@ -9,6 +9,9 @@ def message = "@here Build <${env.BUILD_URL}|${currentBuild.displayName}> " +
 pipeline {
     agent any
 //    tools { maven 'Maven' }
+    parameters {
+        gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
+    }
     environment {
         ALLURE = 'allure'
         VALUE_ONE = '1'
@@ -28,6 +31,13 @@ pipeline {
                 ))
     }
     stages {
+        stages {
+            stage('Example') {
+                steps {
+                    git branch: "${params.BRANCH}", url: 'https://github.com/marbelan3/pipelines.git'
+                }
+            }
+        }
         stage('Setup parameters') {
             steps {
                 script {
