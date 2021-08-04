@@ -24,11 +24,15 @@ pipeline {
                 ))
     }
     stages {
+        stage('Checkout SCM') {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: '123', url: 'https://github.com/marbelan3/pipelines.git']]])
+            }
+        }
         stage('list credentials ids') {
             steps {
                 script {
                     sh 'cat $JENKINS_HOME/credentials.xml | grep "<id>"'
-                    checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: '123', url: 'https://github.com/marbelan3/pipelines.git']]])
                 }
             }
         }
@@ -47,15 +51,9 @@ pipeline {
                 }
             }
         }
-        stage('Checkout SCM') {
-            steps {
-                git branch: "${params.BRANCH}", credentialsId: 'marbelan3', url: 'https://github.com/marbelan3/pipelines.git'
-            }
-        }
         stage('Test') {
             steps {
                 slackSend(message: message, channel: '#ests-ui-tests-api', color: 'good', token: 'token')
-
                 helloWorld("PETER")
                 echo "*****************************\n" +
                         "*****************************\n" +
