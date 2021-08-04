@@ -47,9 +47,6 @@ pipeline {
                 slackSend(message: message, channel: '#ests-ui-tests-api', color: 'good', token: 'token')
                 slackSend(channel: slackResponse.threadId, message: "Thread reply #1")
                 slackSend(channel: slackResponse.threadId, message: "Thread reply #2")
-                script {
-                    slackResponse.addReaction("thumbsup")
-                }
 
                 helloWorld("PETER")
                 echo "*****************************\n" +
