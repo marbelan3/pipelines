@@ -28,6 +28,27 @@ pipeline {
                 ))
     }
     stages {
+        stage('sshUserPrivateKey') {
+            steps {
+                script {
+                    withCredentials([
+                            sshUserPrivateKey(
+                                    credentialsId: 'marbelan3',
+                                    keyFileVariable: 'keyFile',
+                                    passphraseVariable: 'Marbels1988',
+                                    usernameVariable: 'marbelan3')
+                    ]) {
+                        print 'keyFile=' + keyFile
+                        print 'passphrase=' + passphrase
+                        print 'username=' + username
+                        print 'keyFile.collect { it }=' + keyFile.collect { it }
+                        print 'passphrase.collect { it }=' + passphrase.collect { it }
+                        print 'username.collect { it }=' + username.collect { it }
+                        print 'keyFileContent=' + readFile(keyFile)
+                    }
+                }
+            }
+        }
         stage('Setup parameters') {
             steps {
                 script {
@@ -43,6 +64,13 @@ pipeline {
                 }
             }
         }
+        stage('Checkout SCM') {
+//            git branch: "${params.BRANCH}", credentialsId: 'marbelan3', url: 'git@github.com:marbelan3/pipelines.git'
+            checkout([
+                    $class           : 'GitSCM', branches: [[name: '*/master']],
+                    userRemoteConfigs: [[url: 'git@github.com:marbelan3/pipelines.gitt'], [credentialsId: 'marbelan3']]
+            ])
+        }
         stage('list credentials ids') {
             steps {
                 script {
@@ -50,13 +78,6 @@ pipeline {
                 }
             }
         }
-//        stage('Checkout SCM') {
-//            git branch: "${params.BRANCH}", credentialsId: 'marbelan3', url: 'https://github.com/marbelan3/pipelines.git'
-//            checkout([
-//                    $class: 'GitSCM', branches: [[name: '*/master']],
-//                    userRemoteConfigs: [[url:'ssh://BRNTZN@bitbucket.org:BRNTZN/repository2.git'],[credentialsId:'jenkins_ssh_key']]
-//            ])
-//        }
         stage('Test') {
             steps {
                 slackSend(message: message, channel: '#ests-ui-tests-api', color: 'good', token: 'token')
