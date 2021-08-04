@@ -43,14 +43,20 @@ pipeline {
                 }
             }
         }
-        stage('Checkout SCM') {
-            git branch: "${params.BRANCH}", credentialsId: 'marbelan3', url: 'https://github.com/marbelan3/pipelines.git'
-        }
-        stage('Checkout code') {
+        stage('list credentials ids') {
             steps {
-                checkout scm
+                script {
+                    sh 'cat $JENKINS_HOME/credentials.xml | grep "<id>"'
+                }
             }
         }
+//        stage('Checkout SCM') {
+//            git branch: "${params.BRANCH}", credentialsId: 'marbelan3', url: 'https://github.com/marbelan3/pipelines.git'
+//            checkout([
+//                    $class: 'GitSCM', branches: [[name: '*/master']],
+//                    userRemoteConfigs: [[url:'ssh://BRNTZN@bitbucket.org:BRNTZN/repository2.git'],[credentialsId:'jenkins_ssh_key']]
+//            ])
+//        }
         stage('Test') {
             steps {
                 slackSend(message: message, channel: '#ests-ui-tests-api', color: 'good', token: 'token')
