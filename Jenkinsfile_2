@@ -1,10 +1,6 @@
 /* import shared library */
 @Library('jenkins-shared-library') _
 def slackResponse = slackSend(channel: "tests-ui-tests-api", message: "Here is the primary message")
-def icons = [":unicorn_face:", ":beer:", ":bee:", ":man_dancing:", ":party_parrot:", ":ghost:", ":dancer:", ":scream_cat:"]
-def randomIndex = (new Random()).nextInt(icons.size())
-def message = "@here Build <${env.BUILD_URL}|${currentBuild.displayName}> " +
-        "successfuly deployed to the production ${icons[randomIndex]}"
 
 pipeline {
     agent any
@@ -32,6 +28,7 @@ pipeline {
             steps {
                 script {
                     sh 'cat $JENKINS_HOME/credentials.xml | grep "<id>"'
+                    checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: '123', url: 'https://github.com/marbelan3/pipelines.git']]])
                 }
             }
         }
@@ -58,8 +55,6 @@ pipeline {
         stage('Test') {
             steps {
                 slackSend(message: message, channel: '#ests-ui-tests-api', color: 'good', token: 'token')
-                slackSend(channel: slackResponse.threadId, message: "Thread reply #1")
-                slackSend(channel: slackResponse.threadId, message: "Thread reply #2")
 
                 helloWorld("PETER")
                 echo "*****************************\n" +
@@ -199,7 +194,7 @@ pipeline {
                     from: "marbelan3@gmail.com"
             )
             slackSuccessNotifier()
-            slackSend(channel: slackResponse.threadId, message: "Job ${env.BUILD_ID} on ${env.JENKINS_URL} success, '${env.BUILD_URL}/allure'")
+            slackSend(channel: slackResponse.threadId, message: "Job ${env.BUILD_ID} on ${env.JENKINS_URL} success, '${env.BUILD_URL}allure'")
         }
         failure {
             echo 'only when the Pipeline is currently in a "failed" state run, usually expressed in the Web UI with the red indicator.'
@@ -215,7 +210,7 @@ pipeline {
                     to: "marbelan3@gmail.com",
                     from: "marbelan3@gmail.com"
             )
-            slackSend(channel: slackResponse.threadId, message: "Job ${env.BUILD_ID} on ${env.JENKINS_URL} failed, '${env.BUILD_URL}/allure'")
+            slackSend(channel: slackResponse.threadId, message: "Job ${env.BUILD_ID} on ${env.JENKINS_URL} failed, '${env.BUILD_URL}allure'")
         }
         unstable {
             echo 'current Pipeline has "unstable" state, usually by a failed test, code violations and other causes, in order to run. Usually represented in a web UI with a yellow indication.'
