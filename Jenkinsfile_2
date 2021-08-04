@@ -33,7 +33,6 @@ pipeline {
                 script {
                     properties([
                             parameters([choice(choices: ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE'], name: 'CHOICE'),
-
                                         booleanParam(defaultValue: true, description: '', name: 'IS_ENABLED'),
                                         string(name: 'COUNT', defaultValue: '0', description: 'Please set seconds count'),
                                         string(name: 'BRANCH', defaultValue: 'master', description: 'Please chose the branch'),
@@ -45,7 +44,12 @@ pipeline {
             }
         }
         stage('Checkout SCM') {
-            git branch: "${params.BRANCH}", credentialsId: 'your_credentials', url: "https://github.com/marbelan3/pipelines.git"
+            git branch: "${params.BRANCH}", credentialsId: 'marbelan3', url: "https://github.com/marbelan3/pipelines.git"
+        }
+        stage('Checkout code') {
+            steps {
+                checkout scm
+            }
         }
         stage('Test') {
             steps {
