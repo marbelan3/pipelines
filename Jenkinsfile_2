@@ -199,7 +199,7 @@ pipeline {
                     from: "marbelan3@gmail.com"
             )
             slackSuccessNotifier()
-//            slackUploadFile filePath: "src/main/resources/test.txt", initialComment:  "HEY HEY"
+            slackSend(channel: slackResponse.threadId, message: "Job ${env.BUILD_ID} on ${env.JENKINS_URL} success, 'http://${env.BUILD_URL}/${env.JOB_NAME}/${env.BUILD_NUMBER}/allure'")
         }
         failure {
             echo 'only when the Pipeline is currently in a "failed" state run, usually expressed in the Web UI with the red indicator.'
@@ -215,6 +215,7 @@ pipeline {
                     to: "marbelan3@gmail.com",
                     from: "marbelan3@gmail.com"
             )
+            slackSend(channel: slackResponse.threadId, message: "Job ${env.BUILD_ID} on ${env.JENKINS_URL} failed, 'http://${env.BUILD_URL}/${env.JOB_NAME}/${env.BUILD_NUMBER}/allure'")
         }
         unstable {
             echo 'current Pipeline has "unstable" state, usually by a failed test, code violations and other causes, in order to run. Usually represented in a web UI with a yellow indication.'
